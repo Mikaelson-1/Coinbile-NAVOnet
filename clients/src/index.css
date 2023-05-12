@@ -10,8 +10,11 @@
 }
 
 .button{
-  background: linear-gradient(90deg, #6affae,#5ce2ff);
+  /* background: linear-gradient(90deg, #6affae,#5ce2ff); */
+  background-color: yellow;
 }
+
+
 
 top{
   background: #6affae;
