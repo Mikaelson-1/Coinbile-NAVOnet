@@ -1,30 +1,39 @@
-import React from 'react'
-import { Button ,Navbar ,Text,Card, Service, Center, Card2} from '../components'
+import React from "react";
+
+import {
+  Button,
+  Navbar,
+  Text,
+  Card,
+  Service,
+  Center,
+  Card2,
+  Api,
+} from "../components";
+import Footer from "../components/Footer";
 
 const Home = () => {
   return (
-    <div className='bg-black'>
+    <div className="">
       <div>
-      <Navbar />
+        <Navbar />
       </div>
 
+      <div className="p-10">
+        <Text />
 
-<div className='p-10'>
-      <Text />
+        <Card />
 
+        <Service />
 
-      <Card />
+        <Center />
 
-      <Service/>
-
-      <Center />
-
-      <Card2 />
-
+        <Card2 />
+        <Api />
+        <Footer />
       </div>
-
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

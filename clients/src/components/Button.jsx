@@ -1,13 +1,16 @@
-import React from 'react'
+import React from "react";
 
-const Button = ({title}) => {
+const Button = ({ title, handleClick }) => {
   return (
     <div>
-        <button className='button px-5 py-2 rounded'>
-            {title}
-        </button>
+      <button
+        className="button px-5 py-2 rounded hover:opacity-[100%]"
+        onClick={handleClick}
+      >
+        {title}
+      </button>
     </div>
-  )
-}
+  );
+};
 
-export default Button
+export default Button;
