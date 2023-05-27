@@ -9,8 +9,8 @@
   background: black url("./assets/bg_texture.png");
 }
 
-.nav{
-   background: black url("./assets/bg_texture.png");
+.nav {
+  background: black url("./assets/bg_texture.png");
 }
 
 body {
@@ -20,6 +20,15 @@ body {
 }
 
 div {
+  background: transparent;
+}
+
+h1 {
+  background: transparent;
+}
+
+ul,
+li {
   background: transparent;
 }
 

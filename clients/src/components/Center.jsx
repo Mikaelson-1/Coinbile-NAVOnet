@@ -2,10 +2,25 @@ import React from "react";
 import eth from "../assets/eth.webp";
 import { Link } from "react-router-dom";
 import Button from "./Button";
+import { motion } from "framer-motion";
+import {
+  fadeIn,
+  footerVariants,
+  staggerChildren,
+  staggerContainer,
+  textVariant,
+  textVariant2,
+} from "../Utils/motion";
 
 const Center = () => {
   return (
-    <div className="text-center text-white sm:px-[25%] sm:mt-0 mt-20 p-5 w-full">
+    <motion.div
+      variants={footerVariants}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: false, amount: 0.25 }}
+      className="text-center text-white sm:px-[25%] sm:mt-0 mt-20 p-5 w-full"
+    >
       <h1 className="text-[40px]">
         Join <b className="coinbile">Coinbile</b> today!!
       </h1>
@@ -29,7 +44,7 @@ const Center = () => {
       <div className="w-full mt-10">
         <img src={eth} className="w-full" />
       </div>
-    </div>
+    </motion.div>
   );
 };
 

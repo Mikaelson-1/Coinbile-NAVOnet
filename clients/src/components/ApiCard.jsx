@@ -1,4 +1,13 @@
 import React from "react";
+import { motion } from "framer-motion";
+import {
+  fadeIn,
+  footerVariants,
+  staggerChildren,
+  staggerContainer,
+  textVariant,
+  textVariant2,
+} from "../Utils/motion";
 
 {
   /*}{
@@ -33,7 +42,13 @@ import React from "react";
 
 const ApiCard = ({ image, name, symbol, market_cap_rank, current_price }) => {
   return (
-    <div className="rounded p-5 border gap-5 mt-2 text-white">
+    <motion.div
+      variants={footerVariants}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: false, amount: 0.25 }}
+      className="rounded p-5 border border-[#5f5f5f] gap-5 mt-2 text-white"
+    >
       <div className="flex gap-2 text-white">
         <img src={image} className="w-[30px]" />
         <h1 className="text-white">
@@ -48,7 +63,7 @@ const ApiCard = ({ image, name, symbol, market_cap_rank, current_price }) => {
         <h1 className="font-bold">Price:</h1>
         <h1>${current_price}</h1>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

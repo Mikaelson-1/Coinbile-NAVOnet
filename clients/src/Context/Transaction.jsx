@@ -8,11 +8,13 @@ const { ethereum } = window;
 export const TransactionContext = createContext();
 
 //This is the first step for declaring the providers
-const getTransaction =  () => {
+const getTransaction = () => {
   const provider = new ethers.BrowserProvider(ethereum);
   const signer = provider.getSigner();
+  //const balance = provider.getBalance("0x5349dbe35f1a6640685ab11ab08db585f491adc2");
   const transaction = new ethers.Contract(ContractAddress, ContractABI, signer);
 
+  // console.log(balance);
   return transaction;
 };
 
@@ -31,7 +33,7 @@ export const TransactionProvider = ({ children }) => {
   const [transactions, setTransactions] = useState([]);
 
   const handleChange = (e, name) => {
-    setFormData((prevState) => ({ ...prevState, [name]: e.target.value }));
+    setFormData((prev) => ({ ...prev, [name]: e.target.value }));
   };
 
   const getAllTransactions = async () => {
@@ -41,7 +43,7 @@ export const TransactionProvider = ({ children }) => {
       const transactionContract = getTransaction();
 
       //calling the getBlockchain() function from the smart contract
-      const Alltransaction = await transactionContract.getBlockchain();
+      const Alltransaction = transactionContract.getBlockchain();
 
       //mapping over the Alltransaction(getBlockchain() function)  to get the structured values from the smart Contract
       const ExistingTransaction = Alltransaction.map((transaction) => ({
@@ -120,7 +122,7 @@ export const TransactionProvider = ({ children }) => {
       const { addressTo, amount, message } = formData;
 
       const transactionContract = getTransaction();
-      //const Amount = ethers.formatEther(amount);
+      //const Amount = parseEther(amount);
 
       await ethereum.request({
         method: "eth_sendTransaction",
@@ -134,6 +136,7 @@ export const TransactionProvider = ({ children }) => {
         ],
       });
 
+      //here we are calling the function addToBlockchain from the smart contract with the getSigner()
       const transactionHash = transactionContract.addToBlockchain(
         addressTo,
         amount,

@@ -1,33 +1,36 @@
 import React from "react";
 import { AiOutlineHome, AiOutlineForm } from "react-icons/ai";
+import { FiSend } from "react-icons/fi";
+import { BsCoin, BsClockHistory } from "react-icons/bs";
+import { BiHomeAlt, BiCog, BiLogOut } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   return (
-    <div className="card p-6 w-[65px]  rounded">
-      <div className="text-center text-[#5f5f5f] bg-transparent">
+    <div className="card p-6 w-[65px]  rounded text-[#5f5f5f] ">
+      <div className="text-center items-center text-[#5f5f5f] bg-transparent font-bold ">
         <Link to="/">
-          <AiOutlineHome className="mt-10 bg-transparent" />
+          <BiHomeAlt className="mt-10 bg-transparent font-bold hover:text-[#5ce2ff]" />
         </Link>
 
         <Link to="/form">
-          <AiOutlineForm className="mt-10 bg-transparent" />
+          <FiSend className="mt-10 bg-transparent hover:text-[#5ce2ff]" />
         </Link>
 
         <Link to="/api">
-          <AiOutlineHome className="mt-10 bg-transparent" />
+          <BsCoin className="mt-10 bg-transparent hover:text-[#5ce2ff]" />
         </Link>
 
         <Link to="/api">
-          <AiOutlineHome className="mt-10 bg-transparent" />
+          <AiOutlineHome className="mt-10 bg-transparent hover:text-[#5ce2ff]" />
         </Link>
         <Link to="/transactions">
-          <AiOutlineHome className="mt-10 bg-transparent" />
+          <BsClockHistory className="mt-10 bg-transparent hover:text-[#5ce2ff]" />
         </Link>
-        <div className="bottom-0 mb-10 mt-[20%] bg-transparent">
-          <AiOutlineHome className=" mt-20 bg-transparent" />
-          <AiOutlineHome className=" mt-10 bg-transparent" />
-        </div>
+      </div>
+      <div className="bottom-0 mb-10 absolute pb-0 bg-transparent ">
+        <BiLogOut className=" mt-10 bg-transparent hover:text-[#5ce2ff]" />
+        <BiCog className=" mt-10 bg-transparent hover:text-[#5ce2ff]" />
       </div>
     </div>
   );

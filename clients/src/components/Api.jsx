@@ -3,6 +3,15 @@ import { SiDatastax } from "react-icons/si";
 import Button from "./Button";
 import { Link } from "react-router-dom";
 import { Circles } from "react-loader-spinner";
+import { motion } from "framer-motion";
+import {
+  fadeIn,
+  footerVariants,
+  staggerChildren,
+  staggerContainer,
+  textVariant,
+  textVariant2,
+} from "../Utils/motion";
 
 const API_URL =
   "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=4&page=1&sparkline=false";
@@ -50,7 +59,13 @@ const Api = () => {
   }
 
   return (
-    <div className="w-[100%] sm:p-10 ">
+    <motion.div
+      variants={footerVariants}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: false, amount: 0.25 }}
+      className="w-[100%] sm:p-10 "
+    >
       <h1 className="text-white text-[30px] font-bold text-center">
         Get Latest Crypto ratings with
         <span className="coinbile"> Coinbile</span>
@@ -77,7 +92,7 @@ const Api = () => {
             {data.map((datax) => (
               <div
                 key={datax.id}
-                className="rounded p-5 border gap-5 mt-2 text-white"
+                className="rounded p-5 border border-[#5f5f5f] gap-5 mt-2 text-white"
               >
                 <div className="flex gap-2 text-white">
                   <img src={datax.image} className="w-[30px]" />
@@ -97,7 +112,7 @@ const Api = () => {
             ))}
           </div>
         ) : (
-          <div className="text-white text-center flex justify-center p-10">
+          <div className="text-white text-center flex justify-center sm:mt-20 sm:mr-20 p-10">
             <Circles
               height="50"
               width="50"
@@ -110,7 +125,7 @@ const Api = () => {
           </div>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

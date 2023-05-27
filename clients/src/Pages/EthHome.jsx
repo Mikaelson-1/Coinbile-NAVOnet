@@ -15,6 +15,17 @@ import { CiMenuFries } from "react-icons/ci";
 import { AiOutlineClose, AiOutlineHeart } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { data } from "../Utils/data";
+import { NovuProvider, NotificationBell } from "@novu/notification-center";
+import { SiEthereum } from "react-icons/si";
+import { motion } from "framer-motion";
+import {
+  fadeIn,
+  footerVariants,
+  staggerChildren,
+  staggerContainer,
+  textVariant,
+  textVariant2,
+} from "../Utils/motion";
 
 //const API_URL ="https://deep-index.moralis.io/api/v2/nft/0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB/323dBYdj9gzU0OBCxoyd7ZzagPy5fjYRQxX7RtBdADyrHjEPJyKFg6YeO17KmmPWVG9";
 
@@ -84,8 +95,18 @@ const EthHome = () => {
 */
   }
 
+  const AllNfts = () => {
+    alert("Not available at the moment!");
+  };
+
   return (
-    <div className="bg-transparent w-full">
+    <motion.div
+      variants={footerVariants}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: false, amount: 0.25 }}
+      className="bg-transparent w-full"
+    >
       <div className="bg-none h-full sm:p-0 flex">
         <div className="fixed sm:flex hidden relative p-3 h-[100vh]">
           <Sidebar />
@@ -103,7 +124,7 @@ const EthHome = () => {
               </Link>
 
               <Link to="/form">
-                <li className="mt-10">Transfer</li>
+                <li className="mt-10">Send ETH</li>
               </Link>
               <Link to="/api">
                 <li className="mt-10">Coin Rankings</li>
@@ -125,7 +146,7 @@ const EthHome = () => {
         <div className=" absolute sm:px-20   bg-transparent flex justify-between w-full p-6">
           <div className="flex justify-between w-full">
             <input
-              className=" sm:w-[300px] w-full h-[40px] rounded-[100px] card px-3  sm:ml-6 "
+              className=" sm:w-[300px] w-full h-[40px] rounded-[100px] card px-3  sm:ml-6 overview-[#5ce2ff]"
               placeholder="Search something..."
               //onClick={() => setNavbar(true)}
             />
@@ -147,7 +168,12 @@ const EthHome = () => {
         </div>
 
         <div className="text-white absolute sm:hidden mt-[15%] p-10 text-[25px] bg-transparent">
-          <h1 className="bg-transparent">Hi, {name}</h1>
+          <h1 className="bg-transparent">
+            Hi, {name}.
+            <span className="text-[20px] ml-3">
+              {shortenAddress(currentAccount)}
+            </span>
+          </h1>
         </div>
 
         <div className="bg-transparent card w-full sm:h-[255px] xs:h-[560px] pb-5 sm:pb-0 sm:mt-[10%] mt-[40%] rounded-[10px] sm:flex  m-7 gap-3">
@@ -164,7 +190,7 @@ const EthHome = () => {
             </div>
           </div>
         </div>
-        <div className=" w-[25%] h-auto sm:mt-[10%] mt-[40%] card rounded p-2 sm:mr-5 sm:flex hidden">
+        <div className=" w-[25%] h-auto sm:mt-[10%] mt-[40%] card rounded p-2 sm:mr-5 lg:flex hidden ">
           <div className="p-5">
             <img src={nft3} className="h-[45%] w-full rounded-[5px]" />
 
@@ -172,7 +198,10 @@ const EthHome = () => {
 
             <h1 className="text-white text-center mt-7">
               {shortenAddress(currentAccount)}
-              {balance}
+            </h1>
+
+            <h1 className="text-[#5ce2ff] text-center text-[20px] mt-7 flex justify-center gap-2">
+              <SiEthereum className="mt-1" /> 1.50ETH
             </h1>
           </div>
         </div>
@@ -182,7 +211,10 @@ const EthHome = () => {
         <h1 className="sm:ml-[15%]  text-white ">Top NFTs</h1>
 
         <div>
-          <button className="flex  gap-3  text-white bg-[#121212] px-3 py-2 rounded-[80px]">
+          <button
+            className="flex  gap-3  text-white bg-[#121212] px-3 py-2 rounded-[80px]"
+            onClick={AllNfts}
+          >
             All NFTs
           </button>
         </div>
@@ -190,7 +222,7 @@ const EthHome = () => {
 
       <div className="bg-none">
         {data?.length > 0 ? (
-          <div className="grid sm:grid-cols-3  sm:ml-[10%] gap-4 sm:w-[70%] xs:w-[65%] w-full sm:p-0 sm:p-5 p-10 sm:mt-5 mt-0 pb-5">
+          <motion.div className="grid sm:grid-cols-3  sm:ml-[10%] gap-4 sm:w-[70%] xs:w-[65%] w-full sm:p-0 sm:p-5 p-10 sm:mt-5 mt-0 pb-5">
             {data.map((datax) => (
               <div
                 key={datax.token_id}
@@ -217,12 +249,12 @@ const EthHome = () => {
                 </div>
               </div>
             ))}
-          </div>
+          </motion.div>
         ) : (
           "loading..."
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

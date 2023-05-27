@@ -47,7 +47,7 @@ export const data = [
     last_metadata_sync: "2022-08-22T13:27:58.122Z",
     minter_address: null,
     possible_spam: false,
-    image: "https://www.larvalabs.com/cryptopunks/cryptopunk001.png",
+    image: "https://www.larvalabs.com/cryptopunks/cryptopunk008.png",
   },
   {
     id: 3,

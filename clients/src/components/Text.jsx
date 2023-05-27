@@ -5,16 +5,33 @@ import { SiEthereum } from "react-icons/si";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { TransactionContext } from "../Context/Transaction";
+import {
+  fadeIn,
+  footerVariants,
+  staggerChildren,
+  staggerContainer,
+  textVariant,
+  textVariant2,
+} from "../Utils/motion";
 
 const Text = () => {
   return (
-    <div className="sm:px-10  top sm:flex justify-between ">
+    <motion.div
+      variants={footerVariants}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: false, amount: 0.25 }}
+      className="sm:px-10  top sm:flex justify-between "
+    >
       <motion.div
         initial={{ x: -1000 }}
         animate={{ x: 0 }}
         transition={{ duration: 0.75 }}
       >
-        <h1 className="mt-10 sm:text-[60px] text-[30px] text-white py-10 font-bold">
+        <h1
+          variants={fadeIn("right", "tween", 0.2, 1)}
+          className="mt-10 sm:text-[60px] text-[30px] text-white py-10 font-bold"
+        >
           Send and receive Ethereum with <b className="coinbile">Coinbile</b>.
         </h1>
         <p className="text-[#5f5f5f] text-[20px] font-[500] sm:w-[89%]">
@@ -34,13 +51,16 @@ const Text = () => {
         </div>
       </motion.div>
 
-      <div className="w-full h-full sm:mt-20">
+      <div
+        variants={fadeIn("left", "tween", 0.2, 1)}
+        className="w-full h-full sm:mt-[13%]"
+      >
         <img
           src={image}
           className="text-white sm:mt-0 mt-20 h-[10%] image w-full"
         />
       </div>
-    </div>
+    </motion.div>
   );
 };
 
