@@ -30,6 +30,7 @@ const Input = ({ placeholder, name, handlechange, value, type }) => (
 );
 
 const Form = () => {
+  const [input, setInputs] = useState("");
   const { formData, sendTransaction, handleChange, isloading } =
     useContext(TransactionContext);
 
@@ -46,17 +47,17 @@ const Form = () => {
     e.preventDefault();
 
     console.log("Button clicked");
-    await fetch("http://localhost:3000/home", {
+    await fetch("http://localhost:3000/home/", {
       method: "POST",
       body: JSON.stringify({
-        description: message.value,
+        description: input,
       }),
       headers: { "Content-Type": "application/json" },
     })
       .then((response) => response.json())
       .then((data) => console.log(data))
       .catch((error) => console.error(error));
-    Input.value = "Error";
+    input: "Error";
 
     sendTransaction();
   };
@@ -75,7 +76,10 @@ const Form = () => {
 
       <div className="float-right bg-transparent rounded">
         <div className="fixed bg-transparent p-5 rounded">
-          <NovuProvider subscriber-id="Submit">
+          <NovuProvider
+            subscriber-id="Submit"
+            applicationIdentifier={"AtmZcPmcw1Jr"}
+          >
             <PopoverNotificationCenter
               onNotificationClick={onNotificationClick}
               className="bg-transparent"
@@ -130,7 +134,8 @@ const Form = () => {
           placeholder="Enter Message"
           name="message"
           type="text"
-          onChange={handleChange}
+          value={input}
+          onChange={(e) => setInputs(e.target.value)}
         />
 
         <div className="py-2 ">
